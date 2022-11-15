@@ -5,11 +5,11 @@ const btn = document.querySelector(".form button");
 
 btn.addEventListener("click", addTodos);
 
-renderTodos ();
+renderTodos();
 
 function renderTodos () {
-    todoList.innerHtml= "";
-
+    todoList.innerHTML="";
+    
     const todos = JSON.parse(localStorage.getItem("todos"));
 
     if (todos) {
@@ -24,12 +24,15 @@ function renderTodos () {
             icon.classList.add("fa-solid", "fa-check");
             li.appendChild(icon);
             
-            todoList.appendChild(li);
+            todoList.appendChild(li); 
             
             li.addEventListener("click", removeTodo);
+            
         }
+        
     }
 }
+
 
 function addTodos() {
 
@@ -44,11 +47,13 @@ function addTodos() {
     renderTodos();
 }
 
+
 function removeTodo(event) {
     const todos = JSON.parse(localStorage.getItem("todos"));
-    
+
     const index = todos.indexOf(event.target.innerText);
     todos.splice(index, 1);
     localStorage.setItem("todos", JSON.stringify(todos));
     renderTodos();
 }
+
